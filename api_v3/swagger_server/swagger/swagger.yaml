@@ -1,0 +1,148 @@
+---
+swagger: "2.0"
+info:
+  description: "Support for Openstack"
+  version: "1.0.0"
+  title: "Cloud Operations Management"
+host: "172.16.3.38:8080"
+basePath: "/"
+tags:
+- name: "openstack"
+  description: "List of Support Functions"
+schemes:
+- "http"
+paths:
+  /openstack/servers:
+    get:
+      tags:
+      - "List of Servers"
+      summary: "Retrieve Complete List of Servers"
+      description: ""
+      operationId: "get_server"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Ok"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Internal Server Error"
+      x-swagger-router-controller: "swagger_server.controllers.list_of_servers_controller"
+    post:
+      tags:
+      - "Add Servers"
+      summary: "Add a new Servers"
+      description: ""
+      operationId: "add_servers"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Server data"
+        required: true
+        schema:
+          $ref: "#/definitions/Openstack"
+      responses:
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.add_servers_controller"
+  /openstack/image:
+    get:
+      tags:
+      - "List of Images"
+      summary: "Retrieve List of Image Name"
+      description: ""
+      operationId: "get_image"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Ok"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Internal Server Error"
+      x-swagger-router-controller: "swagger_server.controllers.list_of_images_controller"
+  /openstack/flavor:
+    get:
+      tags:
+      - "List of Flavors"
+      summary: "Retrieve List of Flavor Name"
+      description: ""
+      operationId: "get_flavor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Ok"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Internal Server Error"
+      x-swagger-router-controller: "swagger_server.controllers.list_of_flavors_controller"
+  /openstack/network:
+    get:
+      tags:
+      - "List of Networks"
+      summary: "Retrieve List of Network Details"
+      description: ""
+      operationId: "get_network"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Ok"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Internal Server Error"
+      x-swagger-router-controller: "swagger_server.controllers.list_of_networks_controller"
+definitions:
+  Openstack:
+    type: "object"
+    properties:
+      ServerName:
+        type: "string"
+        example: "VM-1"
+      ImageName:
+        type: "string"
+        example: "Cirros"
+      FlavorName:
+        type: "string"
+        example: "basic"
+      NetworkName:
+        type: "string"
+        example: "internal"
+      StartCreation:
+        type: "string"
+        example: "10:30"
+      EndCreation:
+        type: "string"
+        example: "19:55"
+    xml:
+      name: "Openstack"
+    example:
+      ImageName: "Cirros"
+      NetworkName: "internal"
+      FlavorName: "basic"
+      EndCreation: "19:55"
+      StartCreation: "10:30"
+      ServerName: "VM-1"
