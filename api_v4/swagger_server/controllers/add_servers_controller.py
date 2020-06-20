@@ -1,13 +1,10 @@
 import connexion
 import six
-
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
-
 from swagger_server.models.openstack import Openstack  # noqa: E501
 from swagger_server import util
 import openstack
-
 from flask import json
 from flask import Response
 
@@ -54,7 +51,7 @@ def add_servers(body):  # noqa: E501
         scheduler_delete.add_job(func=destroy, trigger="cron", hour=destroy_time[0], minute=destroy_time[1])
         scheduler_delete.start()
 
-        result = "Hai schedulato la creazione e distruzione della seguente VM: " + body.server_name + " con Immagine:" +body.image_name + " con Flavor:" + body.flavor_name + " attiva dalle: " + body.start_creation + " alle: " + body.end_creation
+        result = "Hai schedulato la creazione e distruzione della seguente VM: " + body.server_name + " con Immagine: " +body.image_name + " con Flavor: " + body.flavor_name + " attiva dalle: " + body.start_creation + " alle: " + body.end_creation
         return Response(result, mimetype='text/plain')
     else:
         result = "Assicurati che la richiesta sia di tipo JSON"
