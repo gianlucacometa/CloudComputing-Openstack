@@ -14,8 +14,9 @@ Python 3.5.2+
 To run the server, please execute the following from the root directory:
 
 ```
-pip3 install -r requirements.txt
-python3 -m swagger_server
+source venv/bin/activate
+source admin-openrc.sh
+python -m swagger_server
 ```
 
 and open your browser to here:
