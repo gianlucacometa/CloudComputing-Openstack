@@ -1,3 +1,3 @@
 # CloudComputing-Openstack
 
-Vallati Progetto
+Openstack Operations with OpenstackSDK
